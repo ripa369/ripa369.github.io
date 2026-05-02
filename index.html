@@ -1,144 +1,114 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>消費者目線ニュース</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7375846487634521" crossorigin="anonymous"></script>
-<link rel="icon" type="image/png" href="aikon2.png" />
+<link rel="icon" type="image/png" href="aikon2.png">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --camel:#A0826D;--camel-light:#C4A57B;--camel-dark:#6B5A4F;
-  --bg:#FEF6F0;--bg2:#FFFBF7;--bg3:#FFFFFF;
-  --bo:#E8D5C4;--bor:rgba(160,130,109,0.2);
-  --tx:#3D2817;--ts:#6B5A4F;--td:#9B8B7F;
-}
-body{background:var(--bg);color:var(--tx);font-family:'Noto Sans JP',sans-serif;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  :root{ --camel:#A0826D; --camel-dark:#6B5A4F; --bg:#FEF6F0; --bo:#E8D5C4; --tx:#3D2817; }
+  body{ background:var(--bg); color:var(--tx); font-family:'Noto Sans JP',sans-serif; overflow-x:hidden;}
 
-/* --- 広告エリア --- */
-.ad-top-banner { background:#FBEEE7; text-align:center; padding:10px; border-bottom:1px solid var(--bo); }
-.float-ad-left { position: fixed; top: 150px; left: 10px; width: 120px; z-index: 100; text-align:center; }
-.float-ad-right { position: fixed; top: 150px; right: 10px; width: 120px; z-index: 100; text-align:center; }
-@media(max-width: 1400px) { .float-ad-left, .float-ad-right { display: none; } }
-.ad-label { font-size:10px; color:var(--td); display:block; margin-bottom:5px; }
+  /* --- 復活：両サイド追従広告 --- */
+  .fixed-ad-left, .fixed-ad-right { position:fixed; top:120px; width:120px; z-index:1000; text-align:center; }
+  .fixed-ad-left { left: 10px; }
+  .fixed-ad-right { right: 10px; }
+  @media(max-width:1300px){ .fixed-ad-left, .fixed-ad-right { display:none; } }
 
-/* --- ヘッダー --- */
-.site-header{background:var(--camel-dark);border-bottom:3px solid var(--camel);}
-.header-top{max-width:1100px;margin:0 auto;padding:0.75rem 1rem;display:flex;align-items:center;gap:1rem;}
-.header-icon{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.3);}
-.site-name{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:#fff;}
-.site-name span{color:var(--camel-light);}
-.header-search{margin-left:auto;}
-.search-input{background:#fff;border:1px solid var(--bo);font-size:12px;padding:6px 10px;width:180px;border-radius:3px;outline:none;}
+  .ad-top-area { background:#FBEEE7; text-align:center; padding:10px; border-bottom:1px solid var(--bo); }
+  .site-header { background:var(--camel-dark); padding:15px; border-bottom:3px solid var(--camel); color:#fff; }
+  .header-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+  
+  .nav-bar { background:var(--camel-dark); position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(0,0,0,0.1); }
+  .nav-inner { max-width:1000px; margin:0 auto; display:flex; overflow-x:auto; }
+  .ntab { padding:12px 18px; color:#fff; border:none; background:transparent; cursor:pointer; white-space:nowrap; font-size:14px; }
+  .ntab.active { border-bottom:3px solid #C4A57B; background:rgba(255,255,255,0.1); }
 
-.nav-bar{background:var(--camel-dark);position:sticky;top:0;z-index:100;}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;overflow-x:auto;}
-.ntab{padding:0.65rem 1.1rem;font-size:13px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.8);border:none;border-bottom:3px solid transparent;white-space:nowrap;}
-.ntab.active{color:#fff;border-bottom-color:var(--camel-light);background:rgba(196,165,123,0.2);}
+  .container { max-width:1000px; margin:20px auto; display:grid; grid-template-columns:1fr 300px; gap:20px; padding:0 15px; }
+  @media(max-width:860px){ .container { grid-template-columns:1fr; } .sidebar { display:none; } }
 
-/* --- レイアウト --- */
-.page{max-width:1100px;margin:0 auto;padding:1.25rem 1rem;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;}
-@media(max-width:860px){.page{grid-template-columns:1fr;}.sidebar{display:none;}}
+  /* 記事詳細：動画サイズを修正 */
+  .detail-box { background:#fff; border:1px solid var(--bo); border-radius:8px; padding:20px; }
+  .video-container { width:100%; aspect-ratio:16/9; background:#000; margin-bottom:20px; border-radius:8px; overflow:hidden; }
+  .video-container iframe { width:100%; height:100%; border:none; }
+  .detail-body { white-space:pre-wrap; line-height:1.8; margin-top:15px; }
 
-.grid-list{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1rem;}
-.grid-card{background:var(--bg3);border:1px solid var(--bo);border-radius:6px;overflow:hidden;cursor:pointer;transition:transform 0.2s;}
-.grid-card:hover{transform:translateY(-3px);}
-.thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#eee;}
-.thumb-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;}
-.grid-body{padding:0.75rem;}
-.grid-title{font-size:12px;font-weight:700;line-height:1.6;}
+  /* 一覧：カード */
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:15px; }
+  .card { background:#fff; border:1px solid var(--bo); border-radius:6px; cursor:pointer; overflow:hidden; }
+  .card img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+  .card-info { padding:12px; }
+  .card-title { font-size:13px; font-weight:700; line-height:1.5; }
 
-/* --- 記事詳細 --- */
-.detail-wrap{background:var(--bg3);border:1px solid var(--bo);border-radius:8px;padding:1.5rem;}
-.detail-back{cursor:pointer;font-weight:700;margin-bottom:1rem;color:var(--camel);display:inline-block;}
-.yt-embed-outer{max-width:360px;margin:0 auto 1.5rem;}
-.yt-embed-wrap{position:relative;width:100%;padding-top:177.78%;background:#000;border-radius:12px;overflow:hidden;}
-.yt-embed{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
-.detail-body{white-space:pre-wrap;line-height:1.8;font-size:14px;border-top:1px dashed var(--bo);padding-top:1.5rem;}
+  .sidebar-box { background:#fff; border:1px solid var(--bo); padding:15px; border-radius:6px; margin-bottom:20px; }
+  .sidebar-title { font-weight:700; border-bottom:2px solid var(--camel); padding-bottom:5px; margin-bottom:10px; font-size:14px; }
+  .side-item { display:flex; gap:10px; margin-bottom:10px; cursor:pointer; border-bottom:1px solid #eee; padding-bottom:8px; }
+  .side-item img { width:80px; height:45px; object-fit:cover; border-radius:4px; }
 
-/* --- サイドバー・プロフィール --- */
-.sidebar-block{margin-bottom:1.5rem;}
-.sidebar-title{font-size:12px;font-weight:700;border-bottom:2px solid var(--camel);padding-bottom:5px;margin-bottom:10px;}
-.side-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bo);cursor:pointer;}
-.side-thumb{width:70px;height:45px;border-radius:4px;overflow:hidden;flex-shrink:0;}
-.side-thumb img{width:100%;height:100%;object-fit:cover;}
-.side-title{font-size:11px;font-weight:700;}
-
-.about-box{background:var(--bg3);border:1px solid var(--bo);border-left:4px solid var(--camel);padding:1rem;border-radius:6px;margin-bottom:1.5rem;}
-.about-inner{display:flex;gap:10px;align-items:center;}
-.about-icon{width:48px;height:48px;border-radius:50%;}
-
-.cat-badge{font-size:9px;padding:2px 5px;background:var(--camel-light);color:#fff;border-radius:2px;margin-right:5px;}
-#back-to-top { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: var(--camel-dark); color: #fff; border: none; cursor: pointer; display:none; align-items: center; justify-content: center; z-index: 1000; }
+  #back-to-top { position:fixed; bottom:20px; right:20px; width:45px; height:45px; border-radius:50%; background:var(--camel-dark); color:#fff; border:none; cursor:pointer; display:none; z-index:1000; }
 </style>
 </head>
 <body>
 
-<!-- 元の位置：上部バナー広告 -->
-<div class="ad-top-banner">
-  <span class="ad-label">ADVERTISEMENT</span>
+<!-- 左右追従広告 -->
+<div class="fixed-ad-left">
+  <div style="font-size:10px; color:#999;">AD</div>
+  <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" width="120"></a>
+</div>
+<div class="fixed-ad-right">
+  <div style="font-size:10px; color:#999;">AD</div>
+  <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" width="120"></a>
+</div>
+
+<!-- 上部広告 -->
+<div class="ad-top-area">
   <a href="https://px.a8.net/svt/ejp?a8mat=4AZGCF+EBLENM+5QFO+5ZEMP" rel="nofollow"><img border="0" width="468" height="60" src="https://www27.a8.net/svt/bgt?aid=260315007866&wid=001&eno=01&mid=s00000026754001005000&mc=1"></a>
 </div>
 
-<!-- 復活：両サイド追従広告 -->
-<div class="float-ad-left">
-  <span class="ad-label">AD</span>
-  <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" width="120"></a>
-</div>
-<div class="float-ad-right">
-  <span class="ad-label">AD</span>
-  <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" width="120"></a>
-</div>
-
-<div class="site-header">
-  <div class="header-top">
-    <img class="header-icon" src="aikon2.png" />
-    <div class="site-name">消費者目線<span>ニュース</span></div>
-    <div class="header-search">
-      <input class="search-input" id="sq" type="text" placeholder="検索..." oninput="onSearch()" />
+<header class="site-header">
+  <div class="header-inner">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <img src="aikon2.png" width="40" height="40" style="border-radius:50%;">
+      <h1 style="font-size:18px;">消費者目線ニュース</h1>
     </div>
+    <input type="text" id="sq" placeholder="検索..." oninput="onSearch()" style="padding:5px 10px; border-radius:4px; border:none;">
   </div>
-</div>
+</header>
 
 <div class="nav-bar"><div class="nav-inner" id="nav"></div></div>
 
-<div class="page">
-  <div id="main-area"></div>
+<div class="container">
+  <div id="main-content"></div>
   
-  <div class="sidebar">
-    <div class="about-box">
-      <div class="about-inner">
-        <img class="about-icon" src="aikon2.png">
-        <div>
-          <div style="font-weight:700;font-size:14px;">店長</div>
-          <div style="font-size:11px;color:var(--ts);">消費者目線で解説</div>
-        </div>
+  <aside class="sidebar">
+    <div class="sidebar-box">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <img src="aikon2.png" width="40" height="40" style="border-radius:50%;">
+        <div style="font-weight:700;">店長</div>
       </div>
+      <p style="font-size:12px;">北海道から消費者目線でニュースを解説します。</p>
     </div>
     
-    <div class="sidebar-block">
-      <div class="sidebar-title">最新動画</div>
-      <div id="sideList"></div>
+    <div class="sidebar-box">
+      <div class="sidebar-title">最新記事</div>
+      <div id="side-list"></div>
     </div>
     
-    <!-- 元の位置：サイドバー内広告 -->
-    <div class="sidebar-block" style="text-align:center;">
-      <span class="ad-label">SPONSOR</span>
-      <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank">
-        <img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" style="max-width:100%;">
-      </a>
+    <!-- サイドバー内広告 -->
+    <div style="text-align:center;">
+      <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" style="max-width:100%;"></a>
     </div>
-  </div>
+  </aside>
 </div>
 
-<!-- 元の位置：記事エリア下バナー広告 -->
-<div id="articleBottomAd" style="max-width:1100px; margin:0 auto 2rem; text-align:center; padding:1rem; border-top:1px solid var(--bo); display:none;">
-  <span class="ad-label">RECOMMEND</span>
+<!-- 記事下広告 -->
+<div id="bottom-ad" style="max-width:1000px; margin:20px auto; text-align:center; display:none;">
   <a href="https://hb.afl.rakuten.co.jp/hsc/51ed19aa.959f4ce7.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed19aa.959f4ce7.51eb1e4c.12e00399/?me_id=1&me_adv_id=1231175&t=pict" border="0" style="max-width:100%;"></a>
 </div>
 
-<button id="back-to-top">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
 const CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vRLXT6i0DsJxdixNAai_L7EVM6vNZMhqT9Yt3zQLAxyBdBAzkaAJ_fE6zUVtooaNqXKyNbhP2S-B-Cm/pub?gid=886500697&single=true&output=csv';
@@ -147,16 +117,15 @@ let arts=[], curCat='全て', curDet=null, searchQ='';
 
 function parseCSV(t){const rows=[];let row=[],cell='',inQ=false;for(let i=0;i<t.length;i++){const c=t[i];if(inQ){if(c==='"'&&t[i+1]==='"'){cell+='"';i++;}else if(c==='"')inQ=false;else cell+=c;}else{if(c==='"')inQ=true;else if(c===','){row.push(cell);cell='';}else if(c==='\n'||(c==='\r'&&t[i+1]==='\n')){if(c==='\r')i++;row.push(cell);cell='';rows.push(row);row=[];}else cell+=c;}}if(cell||row.length){row.push(cell);rows.push(row);}return rows;}
 
-async function fetchArticles(){
+async function fetchData(){
   try {
     const res=await fetch(CSV_URL);
     const text=await res.text();
     const rows=parseCSV(text);
     arts = rows.slice(1).filter(r=>r[1]).map((r,i)=>({
-      id:String(i+1),
-      date:r[0]||'', title:r[1]||'', body:r[2]||'',
+      id:String(i+1), date:r[0], title:r[1], body:r[2],
       ytId: r[5] ? r[5].match(/(?:v=|shorts\/|youtu\.be\/)([^&?/\s]+)/)?.[1] : '',
-      category:r[6]||'その他'
+      cat:r[6]||'その他'
     }));
     render();
     renderSide();
@@ -164,21 +133,20 @@ async function fetchArticles(){
 }
 
 function render(){
-  const el=document.getElementById('main-area');
-  const bAd=document.getElementById('articleBottomAd');
+  const main=document.getElementById('main-content');
+  const bAd=document.getElementById('bottom-ad');
   
   if(curDet){
     const a=arts.find(x=>x.id===curDet);
     bAd.style.display = 'block';
-    el.innerHTML=`
-      <div class="detail-wrap">
-        <div class="detail-back" onclick="curDet=null;render()">← 一覧に戻る</div>
-        <div class="yt-embed-outer">
-          <div class="yt-embed-wrap">
-            <iframe class="yt-embed" src="https://www.youtube.com/embed/${a.ytId}" allowfullscreen></iframe>
-          </div>
+    main.innerHTML=`
+      <div class="detail-box">
+        <button onclick="curDet=null;render()" style="margin-bottom:15px; cursor:pointer;">← 戻る</button>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/${a.ytId}" allowfullscreen></iframe>
         </div>
-        <h1 style="font-size:18px; margin-bottom:10px;">${a.title}</h1>
+        <h2 style="font-size:18px;">${a.title}</h2>
+        <p style="font-size:12px; color:#666; margin:10px 0;">${a.date} / ${a.cat}</p>
         <div class="detail-body">${a.body}</div>
       </div>`;
     window.scrollTo(0,0);
@@ -186,40 +154,34 @@ function render(){
   }
 
   bAd.style.display = 'none';
-  const fil=arts.filter(a=>searchQ ? a.title.includes(searchQ) : (curCat==='全て' ? true : a.category===curCat));
-  el.innerHTML=`
-    <div class="grid-list">
-      ${fil.map(a=>`
-        <div class="grid-card" onclick="curDet='${a.id}';render()">
-          <div class="thumb-wrap"><img class="thumb-img" src="https://img.youtube.com/vi/${a.ytId}/maxresdefault.jpg"></div>
-          <div class="grid-body">
-            <div style="margin-bottom:5px;"><span class="cat-badge">${a.category}</span><span style="font-size:10px;">${a.date}</span></div>
-            <div class="grid-title">${a.title}</div>
-          </div>
-        </div>
-      `).join('')}
-    </div>`;
+  const fil=arts.filter(a=>searchQ ? a.title.includes(searchQ) : (curCat==='全て' ? true : a.cat===curCat));
+  main.innerHTML=`<div class="grid">${fil.map(a=>`
+    <div class="card" onclick="curDet='${a.id}';render()">
+      <img src="https://img.youtube.com/vi/${a.ytId}/mqdefault.jpg">
+      <div class="card-info">
+        <div style="font-size:10px; color:var(--camel);">${a.cat}</div>
+        <div class="card-title">${a.title}</div>
+      </div>
+    </div>`).join('')}</div>`;
   renderNav();
-}
-
-function renderSide(){
-  document.getElementById('sideList').innerHTML=arts.slice(0,5).map(a=>`
-    <div class="side-item" onclick="curDet='${a.id}';render()">
-      <div class="side-thumb"><img src="https://img.youtube.com/vi/${a.ytId}/default.jpg"></div>
-      <div class="side-title">${a.title}</div>
-    </div>`).join('');
 }
 
 function renderNav(){
   document.getElementById('nav').innerHTML=CATS.map(c=>`<button class="ntab ${curCat===c?'active':''}" onclick="curCat='${c}';curDet=null;render()">${c}</button>`).join('');
 }
 
-function onSearch(){searchQ=document.getElementById('sq').value;render();}
-const btt = document.getElementById('back-to-top');
-window.addEventListener('scroll', () => { btt.style.display = window.pageYOffset > 300 ? 'flex' : 'none'; });
-btt.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+function renderSide(){
+  document.getElementById('side-list').innerHTML=arts.slice(0,5).map(a=>`
+    <div class="side-item" onclick="curDet='${a.id}';render()">
+      <img src="https://img.youtube.com/vi/${a.ytId}/default.jpg">
+      <div style="font-size:11px; font-weight:700;">${a.title}</div>
+    </div>`).join('');
+}
 
-fetchArticles();
+function onSearch(){ searchQ=document.getElementById('sq').value; render(); }
+window.addEventListener('scroll', () => { document.getElementById('back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none'; });
+
+fetchData();
 </script>
 </body>
 </html>
