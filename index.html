@@ -4,11 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>消費者目線ニュース</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7375846487634521"
-     crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7375846487634521" crossorigin="anonymous"></script>
 <link rel="icon" type="image/png" href="aikon2.png" />
 <style>
-
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --camel:#A0826D;--camel-light:#C4A57B;--camel-dark:#6B5A4F;
@@ -42,240 +40,115 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans JP',sans-serif;
 .ad-top-wrap{background:#FBEEE7;border-bottom:1px solid var(--bo);}
 .ad-top{max-width:1200px;margin:0 auto;padding:0.5rem 1rem;display:flex;align-items:center;gap:10px;}
 .ad-label{font-size:9px;color:var(--td);letter-spacing:0.15em;border:1px solid var(--bo);padding:1px 5px;flex-shrink:0;}
+
+/* 2列表示レイアウト */
 .page{max-width:1200px;margin:0 auto;padding:1.25rem 1rem;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;}
 @media(max-width:860px){.page{grid-template-columns:1fr;}.sidebar{display:none;}}
+
 .section-label{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:0.75rem;padding-bottom:0.6rem;border-bottom:2px solid var(--camel);}
-.feature-card{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:1.5rem;background:var(--bg3);border:1px solid var(--bo);border-radius:6px;overflow:hidden;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 8px rgba(107,90,79,0.08);}
-.feature-card:hover{border-color:var(--camel);box-shadow:0 4px 16px rgba(160,130,109,0.15);}
-.feature-card:hover .feature-title{color:var(--camel);}
-.feature-thumb{position:relative;overflow:hidden;background:#eee;}
-.feature-thumb img{width:100%;height:100%;min-height:210px;object-fit:cover;display:block;transition:transform 0.3s;}
-.feature-card:hover .feature-thumb img{transform:scale(1.03);}
-.feature-thumb-no{width:100%;min-height:210px;display:flex;align-items:center;justify-content:center;font-size:40px;opacity:0.2;background:#f0f0f0;}
-.feature-body{padding:1.25rem;display:flex;flex-direction:column;gap:10px;}
-.feature-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.cat-badge{font-size:9px;padding:2px 7px;border:1px solid;letter-spacing:0.08em;font-weight:700;border-radius:2px;}
-.cat-新着{border-color:var(--camel-light);color:var(--camel);background:rgba(196,165,123,0.1);}
-.cat-社会{border-color:#D4A574;color:#A0826D;background:rgba(212,165,116,0.08);}
-.cat-政治{border-color:#C9A574;color:#9B7F5F;background:rgba(201,165,116,0.08);}
-.cat-経済{border-color:#B89968;color:#8B6F52;background:rgba(184,153,104,0.08);}
-.cat-国際{border-color:#B8925C;color:#8B6F47;background:rgba(184,146,92,0.08);}
-.cat-科学{border-color:#A68666;color:#7D6B52;background:rgba(166,134,102,0.08);}
-.cat-生活{border-color:#D4A574;color:#A0826D;background:rgba(212,165,116,0.08);}
-.cat-SNS{border-color:#C4A57B;color:#A0826D;background:rgba(196,165,123,0.08);}
-.cat-その他{border-color:var(--td);color:var(--td);}
-.art-date{font-size:11px;color:var(--td);}
-.new-badge{font-size:10px;color:var(--camel);font-weight:700;}
-.feature-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700;line-height:1.7;color:var(--tx);transition:color 0.15s;}
-.yt-link{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid rgba(160,130,109,0.3);border-radius:4px;background:rgba(160,130,109,0.06);text-decoration:none;font-size:11px;color:var(--camel);margin-top:auto;width:fit-content;transition:all 0.2s;}
-.yt-link:hover{background:rgba(160,130,109,0.12);}
-.yt-play-sm{width:18px;height:13px;background:var(--camel);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.yt-play-sm::after{content:'';border-left:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px;}
-.grid-list{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-@media(max-width:600px){.grid-list{grid-template-columns:1fr;}}
+
+/* 記事カードを2列にする設定 */
+.grid-list{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1rem;}
+@media(max-width:600px){.grid-list{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:10px;}}
+
 .grid-card{background:var(--bg3);border:1px solid var(--bo);border-radius:6px;overflow:hidden;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(107,90,79,0.05);}
 .grid-card:hover{border-color:var(--camel);transform:translateY(-2px);box-shadow:0 6px 16px rgba(160,130,109,0.12);}
-.grid-card:hover .grid-title{color:var(--camel);}
 .thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#eee;}
-.thumb-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
-.grid-card:hover .thumb-img{transform:scale(1.03);}
-.thumb-no{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#6B5A4F 0%,#8B7355 50%,#6B5A4F 100%);border-bottom:2px solid var(--camel);}
-.thumb-no-icon{font-size:22px;opacity:0.5;}
-.thumb-no-text{font-size:11px;font-weight:700;color:var(--camel-light);letter-spacing:0.2em;opacity:0.9;}
-.thumb-overlay{position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(transparent,rgba(0,0,0,0.35));}
-.yt-badge{position:absolute;bottom:5px;right:5px;background:rgba(160,130,109,0.9);border-radius:2px;padding:2px 5px;font-size:9px;color:#fff;display:flex;align-items:center;gap:3px;}
-.yt-tri{border-left:6px solid #fff;border-top:3px solid transparent;border-bottom:3px solid transparent;}
+.thumb-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;}
 .grid-body{padding:0.75rem;display:flex;flex-direction:column;flex:1;}
-.grid-meta{display:flex;align-items:center;gap:5px;margin-bottom:6px;flex-wrap:wrap;}
-.grid-title{font-family:'Noto Serif JP',serif;font-size:12px;font-weight:700;color:var(--tx);line-height:1.6;flex:1;transition:color 0.15s;}
-.read-btn{display:block;width:100%;padding:7px;border:1px solid var(--camel);background:transparent;color:var(--camel);font-size:11px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;letter-spacing:0.08em;text-align:center;border-radius:4px;margin-top:8px;transition:all 0.2s;}
-.read-btn:hover{background:var(--camel);color:#fff;}
+.grid-title{font-family:'Noto Serif JP',serif;font-size:12px;font-weight:700;color:var(--tx);line-height:1.6;flex:1;}
+
+/* カルーセルのデザイン */
+.carousel-container { max-width: 1200px; margin: 1rem auto; overflow: hidden; }
+.carousel-track { display: flex; gap: 15px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px; scrollbar-width: none; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-item { flex: 0 0 85%; scroll-snap-align: center; background: var(--camel-dark); border-radius: 12px; position: relative; aspect-ratio: 16 / 9; }
+
+/* サイドバー */
 .sidebar-block{margin-bottom:1.5rem;}
 .sidebar-title{font-size:12px;font-weight:700;color:var(--tx);padding-bottom:0.5rem;border-bottom:2px solid var(--camel);margin-bottom:0.75rem;}
-.side-item{display:flex;gap:10px;padding:0.6rem 0;border-bottom:1px solid var(--bo);cursor:pointer;transition:all 0.15s;}
-.side-item:last-child{border-bottom:none;}
-.side-item:hover .side-title{color:var(--camel);}
+.side-item{display:flex;gap:10px;padding:0.6rem 0;border-bottom:1px solid var(--bo);cursor:pointer;}
 .side-thumb{width:72px;height:48px;flex-shrink:0;background:#eee;overflow:hidden;border-radius:3px;}
 .side-thumb img{width:100%;height:100%;object-fit:cover;}
-.side-thumb-no{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:16px;opacity:0.2;}
 .side-info{flex:1;min-width:0;}
-.side-title{font-size:12px;font-weight:700;color:var(--tx);line-height:1.5;transition:color 0.15s;}
-.side-date{font-size:10px;color:var(--td);margin-top:3px;}
-.side-ad{padding:0.5rem 0;text-align:center;}
-.side-ad-label{font-size:9px;color:var(--td);letter-spacing:0.15em;border:1px solid var(--bo);padding:1px 5px;display:inline-block;margin-bottom:8px;}
-.side-ad-placeholder{font-size:11px;color:var(--td);}
-.about-wrap{max-width:1200px;margin:0 auto;padding:1.5rem 1rem;border-top:1px solid var(--bo);}
-.about-inner{display:flex;align-items:flex-start;gap:1.25rem;background:var(--bg3);border:1px solid var(--bo);border-left:4px solid var(--camel);border-radius:6px;padding:1.25rem;box-shadow:0 2px 8px rgba(107,90,79,0.06);}
-.about-icon{width:64px;height:64px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(160,130,109,0.25);}
-.about-label{font-size:10px;color:var(--td);letter-spacing:0.15em;margin-bottom:6px;}
-.about-name{font-family:'Noto Serif JP',serif;font-size:15px;font-weight:700;color:var(--tx);margin-bottom:8px;}
-.about-text{font-size:13px;color:var(--ts);line-height:2;}
-.ad-bottom{max-width:1200px;margin:0 auto;display:flex;gap:1rem;padding:1rem;border-top:1px solid var(--bo);}
-.ad-side{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0.5rem;min-height:60px;justify-content:center;}
-.ad-side-label{font-size:9px;color:var(--td);letter-spacing:0.15em;border:1px solid var(--bo);padding:1px 6px;}
-@media(max-width:600px){.ad-bottom{flex-direction:column;}}
-.detail-wrap{max-width:1200px;margin:0 auto;padding:1rem;}
-.detail-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--tx);cursor:pointer;padding:0.5rem 0 1rem;transition:color 0.15s;font-weight:700;}
-.detail-back:hover{color:var(--camel);}
-.detail-inner{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;}
-@media(max-width:860px){.detail-inner{grid-template-columns:1fr;}}
-.detail-thumb-img{width:100%;height:auto;object-fit:contain;border-radius:6px;margin-bottom:1rem;box-shadow:0 2px 12px rgba(107,90,79,0.1);background:#000;}
-.detail-cat{display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;flex-wrap:wrap;}
-.detail-title{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;line-height:1.7;margin-bottom:1rem;padding-bottom:1rem;border-bottom:2px solid var(--camel);color:var(--tx);}
-.detail-yt{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(160,130,109,0.3);border-radius:4px;background:rgba(160,130,109,0.06);text-decoration:none;font-size:13px;color:var(--camel);margin-bottom:1.25rem;transition:all 0.2s;}
-.detail-yt:hover{background:rgba(160,130,109,0.12);}
-.yt-play{width:22px;height:16px;background:var(--camel);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.yt-play::after{content:'';border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px;}
-.detail-body{font-size:14px;color:var(--tx);line-height:2.2;white-space:pre-wrap;}
-.loading{text-align:center;padding:3rem;color:var(--td);font-size:13px;letter-spacing:0.1em;}
-.loading::after{content:'';animation:dots 1.2s infinite;}
-@keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
-.empty{text-align:center;padding:3rem;color:var(--td);font-size:13px;}
-.error-msg{text-align:center;padding:2rem;color:var(--camel);font-size:13px;border:1px solid rgba(160,130,109,0.3);margin:1rem;border-radius:4px;}
-.reload-btn{margin-top:12px;padding:6px 16px;border:1px solid rgba(160,130,109,0.3);background:transparent;color:var(--camel);font-size:12px;cursor:pointer;border-radius:4px;}
-.reload-btn:hover{background:var(--camel);color:#fff;}
-.float-ad{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:6px;filter:drop-shadow(0 4px 12px rgba(107,90,79,0.2));}
-.float-ad-close{background:var(--camel-dark);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0.7;align-self:flex-end;transition:opacity 0.2s;}
-.float-ad-close:hover{opacity:1;}
-.float-ad-inner{background:var(--bg3);border:1px solid var(--bo);border-radius:8px;padding:8px;display:flex;flex-direction:column;align-items:center;gap:4px;max-width:160px;}
-.float-ad-label{font-size:9px;color:var(--td);letter-spacing:0.15em;border:1px solid var(--bo);padding:1px 5px;align-self:flex-start;}
-@media(max-width:480px){.float-ad{bottom:12px;right:12px;}.float-ad-inner{max-width:130px;}}
-.float-ad-left{position:fixed;bottom:20px;left:20px;z-index:9999;display:flex;flex-direction:column;align-items:flex-start;gap:6px;filter:drop-shadow(0 4px 12px rgba(107,90,79,0.2));}
-@media(max-width:480px){.float-ad-left{bottom:12px;left:12px;}}
-@media(max-width:600px){
-  .header-top{flex-wrap:wrap;gap:0.6rem;padding:0.6rem 0.75rem;}
-  .header-icon{width:36px;height:36px;}
-  .site-name{font-size:16px;}
-  .site-tagline{font-size:10px;}
-  .header-search{margin-left:0;width:100%;order:3;}
-  .search-input{width:100%;font-size:12px;}
-  .ad-top{flex-wrap:wrap;overflow:hidden;}
-  .ad-top img{max-width:100%;height:auto !important;}
-  .ad-top-wrap{overflow:hidden;}
-  .float-ad{bottom:10px;right:8px;}
-  .float-ad-left{bottom:10px;left:8px;}
-  .float-ad-inner{max-width:110px;padding:5px;}
-  .float-ad-inner img{max-width:100px !important;height:auto !important;}
-}
-.menu-btn{background:transparent;border:none;cursor:pointer;padding:6px 8px;display:flex;flex-direction:column;gap:5px;flex-shrink:0;}
-.menu-btn span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s;}
-.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.menu-btn.open span:nth-child(2){opacity:0;}
-.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.side-title{font-size:12px;font-weight:700;color:var(--tx);line-height:1.5;}
+
+/* トップへ戻るボタン */
+#back-to-top { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; border-radius: 50%; background: var(--camel-dark); color: white; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 9999; font-size: 24px; }
+
+/* 共通パーツ */
+.cat-badge{font-size:9px;padding:2px 7px;border:1px solid;letter-spacing:0.08em;font-weight:700;border-radius:2px;}
+.cat-新着{border-color:var(--camel-light);color:var(--camel);background:rgba(196,165,123,0.1);}
+.cat-その他{border-color:var(--td);color:var(--td);}
+.art-date{font-size:11px;color:var(--td);}
+.read-btn{display:block;width:100%;padding:7px;border:1px solid var(--camel);background:transparent;color:var(--camel);font-size:11px;cursor:pointer;text-align:center;border-radius:4px;margin-top:8px;}
+
+/* ドロワーメニュー */
 .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:8000;opacity:0;pointer-events:none;transition:opacity 0.3s;}
 .drawer-overlay.show{opacity:1;pointer-events:all;}
-.drawer{position:fixed;top:0;left:0;width:280px;height:100%;background:var(--camel-dark);z-index:8001;transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;display:flex;flex-direction:column;}
+.drawer{position:fixed;top:0;left:0;width:280px;height:100%;background:var(--camel-dark);z-index:8001;transform:translateX(-100%);transition:transform 0.3s;}
 .drawer.open{transform:translateX(0);}
-.drawer-header{padding:1rem 1.1rem;border-bottom:2px solid var(--camel);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.drawer-logo{font-family:'Noto Serif JP',serif;font-size:15px;font-weight:700;color:#fff;}
-.drawer-logo span{color:var(--camel-light);}
-.drawer-close{background:transparent;border:none;color:#aaa;font-size:20px;cursor:pointer;line-height:1;padding:4px;}
-.drawer-close:hover{color:#fff;}
-.drawer-section{padding:0.75rem 0;}
-.drawer-section+.drawer-section{border-top:1px solid rgba(255,255,255,0.1);}
-.drawer-section-title{font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.15em;padding:0 1.1rem 0.5rem;font-weight:700;}
-.drawer-item{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1.1rem;cursor:pointer;color:rgba(255,255,255,0.75);font-size:13px;font-family:'Noto Sans JP',sans-serif;transition:all 0.15s;border:none;background:transparent;width:100%;text-align:left;}
-.drawer-item:hover{background:rgba(196,165,123,0.15);color:#fff;}
-.drawer-item.active{color:var(--camel-light);background:rgba(196,165,123,0.1);}
-.drawer-item-left{display:flex;align-items:center;}
-.drawer-item-icon{font-size:14px;margin-right:8px;opacity:0.8;}
-.drawer-arrow{font-size:10px;color:rgba(255,255,255,0.4);transition:transform 0.2s;flex-shrink:0;}
-.drawer-item.expanded .drawer-arrow{transform:rotate(90deg);}
-.drawer-sub{overflow:hidden;max-height:0;transition:max-height 0.3s ease;}
-.drawer-sub.open{max-height:600px;}
-.drawer-sub-item{display:flex;align-items:center;justify-content:space-between;padding:0.45rem 1.1rem 0.45rem 2.4rem;cursor:pointer;color:rgba(255,255,255,0.6);font-size:12px;font-family:'Noto Sans JP',sans-serif;transition:all 0.15s;border:none;background:transparent;width:100%;text-align:left;}
-.drawer-sub-item:hover{background:rgba(196,165,123,0.1);color:#fff;}
-.drawer-sub-item.active{color:var(--camel-light);}
-.drawer-sub-count{font-size:10px;color:rgba(255,255,255,0.5);background:rgba(196,165,123,0.2);border:1px solid rgba(196,165,123,0.4);border-radius:10px;padding:1px 6px;flex-shrink:0;}
-@media(max-width:600px){.drawer{width:260px;}}
-.yt-embed-wrap{position:relative;width:100%;max-width:420px;margin:0 auto 1rem;border-radius:10px;overflow:hidden;box-shadow:0 2px 16px rgba(107,90,79,0.15);padding-top:0;}
-.yt-embed-wrap::before{content:'';display:block;padding-top:177.78%;}
-.yt-embed{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 </style>
 </head>
 <body>
 
-<!-- ドロワーオーバーレイ -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-
-<!-- 左ドロワーメニュー -->
 <div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <div class="drawer-logo">消費者目線<span>ニュース</span></div>
-    <button class="drawer-close" onclick="closeDrawer()">×</button>
-  </div>
   <div id="drawerContent"></div>
 </div>
 
 <div class="site-header">
   <div class="header-top">
-    <button class="menu-btn" id="menuBtn" onclick="toggleDrawer()" aria-label="メニュー">
-      <span></span><span></span><span></span>
-    </button>
-    <img class="header-icon" src="aikon2.png" alt="消費者目線" onerror="this.style.display='none'" />
+    <button class="menu-btn" id="menuBtn" onclick="toggleDrawer()">☰</button>
+    <img class="header-icon" src="aikon2.png" />
     <div>
       <div class="site-name">消費者目線<span>ニュース</span></div>
       <div class="site-tagline">あなたの財布に直結するニュースを動画で解説</div>
     </div>
     <div class="header-search">
-      <div class="search-wrap">
-        <svg class="search-icon" width="13" height="13" viewBox="0 0 16 16" fill="none">
-          <circle cx="6.5" cy="6.5" r="5" stroke="#999" stroke-width="1.5"/>
-          <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <input class="search-input" id="sq" type="text" placeholder="記事を検索..." oninput="onSearch()" />
-      </div>
-      <button class="search-clear" onclick="clearSearch()">×</button>
-      <span class="search-count" id="sc"></span>
+      <input class="search-input" id="sq" type="text" placeholder="記事を検索..." oninput="onSearch()" />
     </div>
   </div>
 </div>
+
+<section class="carousel-container">
+    <div class="carousel-track">
+        <div class="carousel-item">
+            <div style="padding: 20px; color: white;">
+                <h3>【注目】今週の家計に響くニュース</h3>
+                <p>店長が動画で詳しく解説中！</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="padding: 20px; color: white;">
+                <h3>【人気】北海道の最新スポット</h3>
+                <p>小売店の視点でチェック</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div class="nav-bar"><div class="nav-inner" id="nav"></div></div>
 
-<div class="ad-top-wrap">
-  <div class="ad-top">
-    <a href="https://hb.afl.rakuten.co.jp/hsc/51eb1e4b.340245ea.51eb1e4c.12e00399/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiI5NSIsImJhbiI6MjA1MTk0MiwiYW1wIjpmYWxzZX0%3D" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hsb/51eb1e4b.340245ea.51eb1e4c.12e00399/?me_id=1&me_adv_id=2051942&t=pict" border="0" style="margin:2px;max-width:100%;height:auto;" alt="" title=""></a>
-    <a href="https://px.a8.net/svt/ejp?a8mat=4AZGCF+DGMV76+50+7RXL7L" rel="nofollow"><img border="0" width="468" height="60" alt="" style="max-width:100%;height:auto;" src="https://www24.a8.net/svt/bgt?aid=260315007814&wid=001&eno=01&mid=s00000000018047018000&mc=1"></a>
-    <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4AZGCF+DGMV76+50+7RXL7L" alt="">
-  </div>
-</div>
-
 <div id="main-area"><div class="loading">記事を読み込んでいます</div></div>
 
-<div style="max-width:1200px;margin:0 auto;padding:1rem 1rem 0;text-align:center;">
-  <a href="https://px.a8.net/svt/ejp?a8mat=4AZGCF+EF60AA+50+556VPT" rel="nofollow"><img border="0" width="700" height="320" alt="" style="max-width:100%;height:auto;" src="https://www23.a8.net/svt/bgt?aid=260315007872&wid=001&eno=01&mid=s00000000018031105000&mc=1"></a>
-  <img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4AZGCF+EF60AA+50+556VPT" alt="">
-</div>
-
-<div class="about-wrap">
-  <div class="about-inner">
-    <img class="about-icon" src="aikon2.png" alt="プロフィール" onerror="this.style.display='none'" />
-    <div>
-      <div class="about-label">ABOUT</div>
-      <div class="about-name">北海道の小売店店長</div>
-      <div class="about-text">毎日売場に立ちながら「このニュース、うちの店にどう影響する？」と考えてきました。消費者としても、売る側としても気になるニュースを独自の視点で考察します。ゲームと都市伝説も好き。</div>
-    </div>
-  </div>
-</div>
+<button id="back-to-top">↑</button>
 
 <script>
 const CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vRLXT6i0DsJxdixNAai_L7EVM6vNZMhqT9Yt3zQLAxyBdBAzkaAJ_fE6zUVtooaNqXKyNbhP2S-B-Cm/pub?gid=886500697&single=true&output=csv';
 const CATS=['新着','全て','政治','経済','国際','生活','SNS','その他'];
-let arts=[],curCat='新着',curDet=null,searchQ='',ymFilter=null,ymLabel='';
+let arts=[],curCat='新着',curDet=null,searchQ='';
 
 function parseCSV(t){const rows=[];let row=[],cell='',inQ=false;for(let i=0;i<t.length;i++){const c=t[i];if(inQ){if(c==='"'&&t[i+1]==='"'){cell+='"';i++;}else if(c==='"')inQ=false;else cell+=c;}else{if(c==='"')inQ=true;else if(c===','){row.push(cell);cell='';}else if(c==='\n'||(c==='\r'&&t[i+1]==='\n')){if(c==='\r')i++;row.push(cell);cell='';rows.push(row);row=[];}else cell+=c;}}if(cell||row.length){row.push(cell);rows.push(row);}return rows;}
 
 async function fetchArticles(){
   const res=await fetch(CSV_URL);
-  if(!res.ok)throw new Error(`HTTP ${res.status}`);
   const text=await res.text();
   const rows=parseCSV(text);
-  if(rows.length<2)return[];
   return rows.slice(1).filter(r=>r.some(c=>c.trim())).map((r,i)=>({
     id:String(i+1),
     date:(r[0]||'').trim(),
-    title:(r[1]||'（タイトルなし）').trim(),
+    title:(r[1]||'').trim(),
     body:(r[2]||'').trim(),
     rawUrl:(r[5]||'').trim(),
     thumbnail:resolveThumb((r[5]||'').trim()),
@@ -284,198 +157,74 @@ async function fetchArticles(){
 }
 
 function getYtId(url){
-  if(!url)return'';
   const m=url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&?/\s]+)/);
   return m?m[1]:'';
 }
 
 function resolveThumb(url){
-  if(!url)return'';
   const ytId=getYtId(url);
-  if(ytId)return`https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
-  const dm=url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
-  if(dm)return`https://drive.google.com/uc?export=view&id=${dm[1]}`;
-  const dm2=url.match(/drive\.google\.com\/open\?id=([^&]+)/);
-  if(dm2)return`https://drive.google.com/uc?export=view&id=${dm2[1]}`;
-  return url;
+  return ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : url;
 }
 
-function isNew(date){if(!date)return false;const d=new Date(date);const now=new Date();return(now-d)/(1000*60*60*24)<=7;}
-
-function filtered(){
-  let res=[...arts];
-  if(searchQ){const q=searchQ.toLowerCase();res=res.filter(a=>a.title.toLowerCase().includes(q)||a.body.toLowerCase().includes(q));}
-  if(ymFilter){res=res.filter(a=>a.date&&a.date.startsWith(ymFilter));}
-  else if(curCat==='新着')res=res.filter(a=>isNew(a.date));
-  else if(curCat!=='全て')res=res.filter(a=>a.category===curCat);
-  res.sort((a,b)=>new Date(b.date)-new Date(a.date));
-  return res;
-}
-function onSearch(){searchQ=document.getElementById('sq').value;render();}
-function clearSearch(){document.getElementById('sq').value='';searchQ='';render();}
-
-function sideThumb(a){
-  const th=a.thumbnail;
-  return`<div class="side-thumb">${th?`<img src="${th}" onerror="this.src='https://img.youtube.com/vi/default/mqdefault.jpg'">`:`<div class="side-thumb-no" style="background:linear-gradient(135deg,#6B5A4F,#8B7355);display:flex;align-items:center;justify-content:center;width:100%;height:100%;"><span style="font-size:9px;color:#C4A57B;font-weight:700;letter-spacing:0.1em;text-align:center;line-height:1.4;">サムネ<br>準備中</span></div>`}</div>`;
-}
-
-function mediaHtml(a){
-  const ytId=getYtId(a.rawUrl||'');
-  if(ytId){
-    return`<div class="yt-embed-wrap"><iframe class="yt-embed" src="https://www.youtube.com/embed/${ytId}" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`;
-  }
-  if(a.thumbnail){
-    return`<img class="detail-thumb-img" src="${a.thumbnail}" onerror="this.style.display='none'" />`;
-  }
-  return'';
-}
-
-function cardThumbHtml(a){
-  const ytId=getYtId(a.rawUrl||'');
-  if(a.thumbnail){
-    return`<img class="thumb-img" src="${a.thumbnail}" onerror="this.style.display='none'" />${ytId?'<div class="yt-badge"><span class="yt-tri"></span>YouTube</div>':''}`;
-  }
-  return`<div class="thumb-no"><span class="thumb-no-icon">🎬</span><span class="thumb-no-text">サムネ準備中</span></div>`;
-}
-
-function renderNav(){
-  document.getElementById('nav').innerHTML=CATS.map(c=>{
-    const dot=c==='新着'&&arts.some(a=>isNew(a.date))?'<span class="new-dot"></span>':'';
-    return`<button class="ntab ${curCat===c&&!ymFilter?'active':''}" onclick="curCat='${c}';curDet=null;ymFilter=null;ymLabel='';render()">${c}${dot}</button>`;
-  }).join('');
+function isNew(date){
+  const d=new Date(date);
+  const now=new Date();
+  return(now-d)/(1000*60*60*24)<=7;
 }
 
 function renderMain(){
   const el=document.getElementById('main-area');
-  if(curDet!==null){
-    const a=arts.find(x=>x.id===curDet);
-    if(!a){curDet=null;renderMain();return;}
-    const related = arts.filter(x => x.id !== curDet).slice(0, 6);
-    el.innerHTML=`<div class="detail-wrap"><div class="detail-back" onclick="curDet=null;render()">← 一覧へ戻る</div><div class="detail-inner"><div>
-      ${mediaHtml(a)}
-      <div class="detail-cat"><span class="cat-badge cat-${a.category||'その他'}">${a.category||'その他'}</span><span class="art-date" style="margin-left:8px;">${a.date}</span>${isNew(a.date)?'<span class="new-badge" style="margin-left:8px;">NEW</span>':''}</div>
-      <div class="detail-title">${a.title}</div>
-      <div class="detail-body">${a.body}</div>
-      <div class="detail-back" style="margin-top:2rem;padding-bottom:0;" onclick="curDet=null;render()">← 一覧へ戻る</div>
+  const fil=arts.filter(a=>searchQ ? a.title.includes(searchQ) : (curCat==='新着' ? isNew(a.date) : (curCat==='全て' ? true : a.category===curCat)));
+  
+  const sideArts = arts.slice(0, 6);
+  
+  el.innerHTML=`
+    <div class="page">
+      <div class="main">
+        <div class="section-label">${curCat}</div>
+        <div class="grid-list">
+          ${fil.map(a=>`
+            <div class="grid-card" onclick="alert('記事詳細ページへ')">
+              <div class="thumb-wrap"><img class="thumb-img" src="${a.thumbnail}"></div>
+              <div class="grid-body">
+                <div class="grid-meta"><span class="cat-badge cat-${a.category}">${a.category}</span> <span class="art-date">${a.date}</span></div>
+                <div class="grid-title">${a.title}</div>
+                <button class="read-btn">記事を読む</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
       </div>
       <div class="sidebar">
-        <div class="sidebar-block"><div class="sidebar-title">最新記事</div><div>${related.map(x=>`<div class="side-item" onclick="curDet='${x.id}';render()">${sideThumb(x)}<div class="side-info"><div class="side-title">${x.title}</div><div class="side-date">${x.date}</div></div></div>`).join('')}</div></div>
-        <div class="sidebar-block"><div class="sidebar-title">広告</div><div class="side-ad"><a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiIxMDMiLCJiYW4iOjE1NjQ2MDgsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" border="0" style="margin:2px;max-width:100%;height:auto;" alt="" title=""></a></div></div>
+        <div class="sidebar-title">最新記事</div>
+        ${sideArts.map(a=>`
+          <div class="side-item">
+            <div class="side-thumb"><img src="${a.thumbnail}"></div>
+            <div class="side-info"><div class="side-title">${a.title}</div></div>
+          </div>
+        `).join('')}
       </div>
-    </div></div>`;
-    return;
-  }
-  const fil=filtered();
-  document.getElementById('sc').textContent=searchQ?`${fil.length}件ヒット`:'';
-  if(!fil.length){el.innerHTML=`<div class="page"><div class="empty">— 記事が見つかりません —</div></div>`;return;}
-  const sideArts = [...arts]
-  .sort((a, b) => new Date(b.date) - new Date(a.date))
-  .slice(0, 6);
-  el.innerHTML=`<div class="page"><div class="main">
-    <div class="section-label">${ymFilter?ymLabel:curCat==='新着'?'新着記事（1週間以内）':curCat==='全て'?'全記事':curCat}</div>
-    <div class="grid-list">${fil.map(a=>{return`<div class="grid-card" onclick="curDet='${a.id}';render()"><div class="thumb-wrap">${cardThumbHtml(a)}<div class="thumb-overlay"></div></div><div class="grid-body"><div class="grid-meta"><span class="cat-badge cat-${a.category||'その他'}">${a.category||'その他'}</span><span class="art-date">${a.date}</span>${isNew(a.date)?'<span class="new-badge">NEW</span>':''}</div><div class="grid-title">${a.title}</div><button class="read-btn">記事を読む</button></div></div>`;}).join('')}</div>
-  </div>
-  <div class="sidebar">
-    <div class="sidebar-block"><div class="sidebar-title">最新記事</div><div>${sideArts.map(a=>`<div class="side-item" onclick="curDet='${a.id}';render()">${sideThumb(a)}<div class="side-info"><div class="side-title">${a.title}</div><div class="side-date">${a.date}</div></div></div>`).join('')}</div></div>
-    <div class="sidebar-block"><div class="sidebar-title">広告</div><div class="side-ad"><a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiIxMDMiLCJiYW4iOjE1NjQ2MDgsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" border="0" style="margin:2px;max-width:100%;height:auto;" alt="" title=""></a></div></div>
-  </div></div>`;
-}
-
-function render(){renderNav();renderMain();renderDrawer();}
-
-let curYearMonth=null;
-
-function toggleDrawer(){
-  const d=document.getElementById('drawer');
-  const o=document.getElementById('drawerOverlay');
-  const b=document.getElementById('menuBtn');
-  const isOpen=d.classList.contains('open');
-  if(isOpen){closeDrawer();}else{d.classList.add('open');o.classList.add('show');b.classList.add('open');}
-}
-function closeDrawer(){
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('drawerOverlay').classList.remove('show');
-  document.getElementById('menuBtn').classList.remove('open');
-}
-
-function getYearMonths(){
-  const map={};
-  arts.forEach(a=>{
-    if(!a.date)return;
-    const m=a.date.match(/^(\d{4})-(\d{2})/);
-    if(!m)return;
-    const key=`${m[1]}-${m[2]}`;
-    const label=`${m[1]}年${parseInt(m[2])}月`;
-    if(!map[key])map[key]={key,label,count:0};
-    map[key].count++;
-  });
-  return Object.values(map).sort((a,b)=>b.key.localeCompare(a.key));
-}
-
-function renderDrawer(){
-  const ym=getYearMonths();
-  const catCount={};
-  arts.forEach(a=>{const c=a.category||'その他';catCount[c]=(catCount[c]||0)+1;});
-
-  const catIcons={'政治':'🏛️','経済':'📈','国際':'🌐','生活':'🏠','SNS':'📱','その他':'📌'};
-
-  document.getElementById('drawerContent').innerHTML=`
-    <div class="drawer-section">
-      <div class="drawer-section-title">カテゴリ</div>
-      <button class="drawer-item ${curCat==='新着'&&!curYearMonth?'active':''}" onclick="drawerSelectCat('新着')">
-        <div class="drawer-item-left"><span class="drawer-item-icon">🆕</span>新着</div>
-      </button>
-      <button class="drawer-item ${curCat==='全て'&&!curYearMonth?'active':''}" onclick="drawerSelectCat('全て')">
-        <div class="drawer-item-left"><span class="drawer-item-icon">📋</span>全て</div>
-        <span class="drawer-sub-count">${arts.length}</span>
-      </button>
-      ${['政治','経済','国際','生活','SNS','その他'].map(c=>`
-      <button class="drawer-item ${curCat===c&&!curYearMonth?'active':''}" onclick="drawerSelectCat('${c}')">
-        <div class="drawer-item-left"><span class="drawer-item-icon">${catIcons[c]||'📌'}</span>${c}</div>
-        <span class="drawer-sub-count">${catCount[c]||0}</span>
-      </button>`).join('')}
-    </div>
-    <div class="drawer-section">
-      <div class="drawer-section-title">年月アーカイブ</div>
-      ${ym.map(y=>`
-      <button class="drawer-item ${curYearMonth===y.key?'active':''}" onclick="drawerSelectYM('${y.key}','${y.label}')">
-        <div class="drawer-item-left"><span class="drawer-item-icon">📅</span>${y.label}</div>
-        <span class="drawer-sub-count">${y.count}</span>
-      </button>`).join('')}
     </div>`;
 }
 
-function drawerSelectCat(cat){
-  curCat=cat;curDet=null;curYearMonth=null;
-  render();closeDrawer();window.scrollTo(0,0);
+function renderNav(){
+  document.getElementById('nav').innerHTML=CATS.map(c=>`<button class="ntab ${curCat===c?'active':''}" onclick="curCat='${c}';renderMain()">${c}</button>`).join('');
 }
-function drawerSelectYM(key,label){
-  curYearMonth=key;curDet=null;curCat='全て';
-  ymFilter=key;ymLabel=label;
-  render();closeDrawer();window.scrollTo(0,0);
-}
-fetchArticles().then(data=>{arts=data;render();}).catch(err=>{
-  document.getElementById('main-area').innerHTML=`<div class="error-msg">データの取得に失敗しました。<br><small>${err.message}</small><br><button class="reload-btn" onclick="location.reload()">再読み込み</button></div>`;
+
+function onSearch(){searchQ=document.getElementById('sq').value;renderMain();}
+
+// トップへ戻るボタンの制御
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) { btt.style.display = 'flex'; } 
+    else { btt.style.display = 'none'; }
 });
+btt.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+fetchArticles().then(data=>{arts=data;renderNav();renderMain();});
+
+function toggleDrawer(){ document.getElementById('drawer').classList.toggle('open'); document.getElementById('drawerOverlay').classList.toggle('show'); }
+function closeDrawer(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('show'); }
 </script>
-
-<!-- フローティング広告（右） -->
-<div class="float-ad" id="floatAd">
-  <button class="float-ad-close" onclick="document.getElementById('floatAd').style.display='none'" title="閉じる">×</button>
-  <div class="float-ad-inner">
-    <a href="https://px.a8.net/svt/ejp?a8mat=4AZGCF+EBLENM+5QFO+5ZEMP" rel="nofollow"><img border="0" width="100" height="100" alt="" style="max-width:140px;height:auto;display:block;" src="https://www27.a8.net/svt/bgt?aid=260315007866&wid=001&eno=01&mid=s00000026754001005000&mc=1"></a>
-    <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4AZGCF+EBLENM+5QFO+5ZEMP" alt="">
-    <a href="https://hb.afl.rakuten.co.jp/hsc/51ed19aa.959f4ce7.51eb1e4c.12e00399/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiIxMTMiLCJiYW4iOjEyMzExNzUsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed19aa.959f4ce7.51eb1e4c.12e00399/?me_id=1&me_adv_id=1231175&t=pict" border="0" style="max-width:140px;height:auto;display:block;" alt="" title=""></a>
-  </div>
-</div>
-
-<!-- フローティング広告（左） -->
-<div class="float-ad-left" id="floatAdLeft">
-  <button class="float-ad-close" onclick="document.getElementById('floatAdLeft').style.display='none'" title="閉じる">×</button>
-  <div class="float-ad-inner">
-    <a href="https://hb.afl.rakuten.co.jp/hsc/51ed1ee9.949ffd2c.51eb1e4c.12e00399/?link_type=pict&ut=eyJwYWdlIjoic2hvcCIsInR5cGUiOiJwaWN0IiwiY29sIjoxLCJjYXQiOiIxMDIiLCJiYW4iOjE1MjQxNTIsImFtcCI6ZmFsc2V9" target="_blank" rel="nofollow sponsored noopener"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed1ee9.949ffd2c.51eb1e4c.12e00399/?me_id=1&me_adv_id=1524152&t=pict" border="0" style="max-width:140px;height:auto;display:block;" alt="" title=""></a>
-  </div>
-</div>
-
 </body>
 </html>
