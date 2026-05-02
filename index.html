@@ -1,232 +1,237 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>消費者目線ニュース</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7375846487634521" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="aikon2.png">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --camel: #A0826D; --camel-light: #C4A57B; --camel-dark: #6B5A4F;
-            --bg: #FEF6F0; --tx: #3D2817; --td: #9B8B7F; --bo: #E8D5C4;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--tx); font-family: 'Noto Sans JP', sans-serif; line-height: 1.6; }
-        
-        /* ヘッダー */
-        .site-header { background: var(--camel-dark); color: white; padding: 1rem; border-bottom: 3px solid var(--camel); }
-        .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 15px; }
-        .header-icon { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #fff; }
-        .site-title { font-family: 'Noto Serif JP', serif; font-size: 22px; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>消費者目線ニュース</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7375846487634521" crossorigin="anonymous"></script>
+<link rel="icon" type="image/png" href="aikon2.png" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --camel:#A0826D;--camel-light:#C4A57B;--camel-dark:#6B5A4F;
+  --bg:#FEF6F0;--bg2:#FFFBF7;--bg3:#FFFFFF;
+  --bo:#E8D5C4;--bor:rgba(160,130,109,0.2);
+  --tx:#3D2817;--ts:#6B5A4F;--td:#9B8B7F;
+}
+body{background:var(--bg);color:var(--tx);font-family:'Noto Sans JP',sans-serif;}
+.site-header{background:var(--camel-dark);border-bottom:3px solid var(--camel);}
+.header-top{max-width:1200px;margin:0 auto;padding:0.75rem 1rem;display:flex;align-items:center;gap:1rem;}
+.header-icon{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,255,255,0.3);}
+.site-name{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:#fff;letter-spacing:0.05em;}
+.site-name span{color:var(--camel-light);}
+.header-search{margin-left:auto;display:flex;align-items:center;}
+.search-input{background:#fff;border:1px solid var(--bo);color:var(--tx);font-size:12px;padding:6px 10px;width:180px;border-radius:3px;outline:none;}
 
-        /* レイアウト */
-        .container { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: 1fr 300px; gap: 30px; padding: 0 15px; }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } .sidebar { display: none; } }
+.nav-bar{background:var(--camel-dark);border-bottom:1px solid rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;overflow-x:auto;}
+.ntab{padding:0.65rem 1.1rem;font-size:13px;cursor:pointer;background:transparent;color:rgba(255,255,255,0.8);border:none;border-bottom:3px solid transparent;white-space:nowrap;}
+.ntab.active{color:#fff;border-bottom-color:var(--camel-light);background:rgba(196,165,123,0.2);}
 
-        /* 記事カード */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #fff; border: 1px solid var(--bo); border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.2s; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #eee; }
-        .card-body { padding: 15px; }
-        .card-title { font-size: 14px; font-weight: bold; margin-bottom: 10px; height: 3em; overflow: hidden; }
-        
-        /* サイドバー */
-        .side-block { background: #fff; border: 1px solid var(--bo); padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        .side-title { font-size: 14px; font-weight: bold; border-bottom: 2px solid var(--camel); margin-bottom: 15px; padding-bottom: 5px; }
-        .side-item { display: flex; gap: 10px; margin-bottom: 12px; cursor: pointer; }
-        .side-thumb { width: 60px; height: 40px; object-fit: cover; border-radius: 4px; }
-        .side-text { font-size: 12px; font-weight: bold; line-height: 1.3; }
+/* メインレイアウト */
+.page{max-width:1200px;margin:0 auto;padding:1.25rem 1rem;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;}
+@media(max-width:860px){.page{grid-template-columns:1fr;}.sidebar{display:none;}}
 
-        /* 記事詳細表示モーダル */
-        #detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: none; overflow-y: auto; padding: 20px; }
-        .detail-content { background: #fff; max-width: 800px; margin: 0 auto; border-radius: 12px; overflow: hidden; position: relative; }
-        .close-btn { position: sticky; top: 10px; float: right; margin-right: 10px; background: #000; color: #fff; border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; z-index: 11; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .detail-body { padding: 25px; }
-        .detail-body h2 { margin-bottom: 15px; font-size: 20px; }
-        .detail-text { white-space: pre-wrap; font-size: 16px; color: #444; }
+.grid-list{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1rem;}
+@media(max-width:600px){.grid-list{grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:10px;}}
 
-        /* 広告バナー */
-        .ad-space { text-align: center; margin: 20px 0; }
-        
-        /* トップへ戻る */
-        #topBtn { position: fixed; bottom: 20px; right: 20px; background: var(--camel-dark); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: none; z-index: 999; }
-    </style>
+.grid-card{background:var(--bg3);border:1px solid var(--bo);border-radius:6px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform 0.2s;}
+.grid-card:hover{transform:translateY(-3px);}
+.thumb-wrap{position:relative;width:100%;padding-top:56.25%;background:#eee;}
+.thumb-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;}
+.grid-body{padding:0.75rem;flex:1;}
+.grid-title{font-size:12px;font-weight:700;line-height:1.6;}
+
+/* 詳細ページ */
+.detail-wrap{max-width:1200px;margin:0 auto;padding:1rem;}
+.detail-back{cursor:pointer;font-weight:700;margin-bottom:1rem;color:var(--camel);display:inline-block;}
+.yt-embed-wrap{position:relative;width:100%;max-width:420px;margin:0 auto 1rem;padding-top:177.78%;background:#000;border-radius:8px;overflow:hidden;}
+.yt-embed{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.detail-body{white-space:pre-wrap;line-height:1.8;font-size:14px;margin-top:1rem;}
+
+/* 広告・サイドバー */
+.ad-top-wrap{background:#FBEEE7;border-bottom:1px solid var(--bo);text-align:center;padding:0.5rem;}
+.ad-label{font-size:9px;color:var(--td);border:1px solid var(--bo);padding:1px 5px;margin-right:10px;}
+.sidebar-block{margin-bottom:1.5rem;}
+.sidebar-title{font-size:12px;font-weight:700;border-bottom:2px solid var(--camel);padding-bottom:5px;margin-bottom:10px;}
+.side-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bo);cursor:pointer;}
+.side-thumb{width:70px;height:45px;border-radius:4px;overflow:hidden;flex-shrink:0;}
+.side-thumb img{width:100%;height:100%;object-fit:cover;}
+.side-title{font-size:11px;font-weight:700;line-height:1.4;}
+
+/* プロフィール */
+.about-wrap{background:var(--bg3);border:1px solid var(--bo);border-left:4px solid var(--camel);padding:1.25rem;margin:2rem auto;max-width:1200px;border-radius:6px;}
+.about-inner{display:flex;gap:1.25rem;align-items:center;}
+.about-icon{width:64px;height:64px;border-radius:50%;border:2px solid var(--bo);}
+
+/* ドロワー（サイドメニュー） */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:8000;display:none;}
+.drawer-overlay.show{display:block;}
+.drawer{position:fixed;top:0;left:0;width:280px;height:100%;background:var(--camel-dark);z-index:8001;transform:translateX(-100%);transition:transform 0.3s;padding:1rem;color:#fff;}
+.drawer.open{transform:translateX(0);}
+.drawer-item{display:block;width:100%;padding:10px;color:#fff;text-align:left;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.1);cursor:pointer;}
+
+#back-to-top { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: var(--camel-dark); color: #fff; border: none; cursor: pointer; display:none; align-items: center; justify-content: center; z-index: 1000; font-weight: bold;}
+.cat-badge{font-size:9px;padding:2px 5px;background:var(--camel-light);color:#fff;border-radius:2px;margin-right:5px;font-weight:700;}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-    <div class="header-inner">
-        <img src="aikon2.png" class="header-icon">
-        <div class="site-title">消費者目線ニュース</div>
-    </div>
-</header>
-
-<div class="container">
-    <main>
-        <div class="ad-space">
-            <a href="https://hb.afl.rakuten.co.jp/hsc/3e527b14.9967732a.3e527b15.00632df3/?link_type=hybrid_ad_res&ut=eyJwYWdlIjoiaHlwZXJsaW5rIiwidHlwZSI6Imh5YnJpZF9hZF9yZXMiLCJjb2wiOjEsImFkIjoianVzdGZpdCIsInB0biI6MX0%3D" target="_blank">
-                <img src="https://hbb.afl.rakuten.co.jp/hsb/3e527b14.9967732a.3e527b15.00632df3/?me_id=1&me_adv_id=1073105&t=res" alt="広告">
-            </a>
-        </div>
-
-        <div class="grid" id="article-grid">
-            <p>読み込み中...</p>
-        </div>
-    </main>
-
-    <aside class="sidebar">
-        <div class="side-block">
-            <div class="side-title">ABOUT</div>
-            <div style="text-align:center;">
-                <img src="aikon2.png" style="width:80px; border-radius:50%; margin-bottom:10px;">
-                <p style="font-size:13px;"><b>店長</b><br>北海道から消費者目線でニュースを解説しています。</p>
-            </div>
-        </div>
-        
-        <div class="side-block">
-            <div class="side-title">最新記事</div>
-            <div id="side-list"></div>
-        </div>
-
-        <div class="side-block">
-            <div class="side-title">スポンサー</div>
-            <a href="https://px.a8.net/svt/ejp?a8mat=3Z9N56+8U5Z02+50+2HQO01" rel="nofollow">
-                <img border="0" width="100%" alt="" src="https://www27.a8.net/svt/bgt?aid=240523450098&wid=001&eno=01&mid=s00000000018015053000&mc=1">
-            </a>
-        </div>
-    </aside>
+<!-- 広告（上部） -->
+<div class="ad-top-wrap">
+  <span class="ad-label">広告</span>
+  <a href="https://px.a8.net/svt/ejp?a8mat=4AZGCF+EBLENM+5QFO+5ZEMP" rel="nofollow"><img border="0" width="120" height="60" alt="" src="https://www27.a8.net/svt/bgt?aid=260315007866&wid=001&eno=01&mid=s00000026754001005000&mc=1" style="vertical-align:middle;"></a>
 </div>
 
-<div id="detail-overlay">
-    <div class="detail-content">
-        <button class="close-btn" onclick="closeDetail()">閉じる ×</button>
-        <div id="detail-view"></div>
+<div class="site-header">
+  <div class="header-top">
+    <button style="background:transparent; border:none; color:white; font-size:24px; cursor:pointer;" onclick="toggleDrawer()">☰</button>
+    <img class="header-icon" src="aikon2.png" />
+    <div class="site-name">消費者目線<span>ニュース</span></div>
+    <div class="header-search">
+      <input class="search-input" id="sq" type="text" placeholder="記事を検索..." oninput="onSearch()" />
     </div>
+  </div>
 </div>
 
-<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="nav-bar"><div class="nav-inner" id="nav"></div></div>
+
+<div id="main-area"></div>
+
+<!-- プロフィール -->
+<div id="aboutSection" class="about-wrap">
+  <div class="about-inner">
+    <img class="about-icon" src="aikon2.png">
+    <div>
+      <div style="font-size:10px; color:var(--td); margin-bottom:5px;">運営者プロフィール</div>
+      <div style="font-weight:700; font-size:16px;">店長</div>
+      <div style="font-size:13px; color:var(--ts); line-height:1.6; margin-top:5px;">
+        北海道から「消費者目線」で、生活に直結するニュースを動画で分かりやすく解説しています。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 広告（下部） -->
+<div id="bottomAd" style="max-width:1200px; margin:2rem auto; text-align:center; padding:1rem; border-top:1px solid var(--bo);">
+  <span class="ad-label">広告</span><br><br>
+  <a href="https://hb.afl.rakuten.co.jp/hsc/51ed19aa.959f4ce7.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed19aa.959f4ce7.51eb1e4c.12e00399/?me_id=1&me_adv_id=1231175&t=pict" border="0" style="max-width:100%;"></a>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <h3 style="margin-bottom:1rem; border-bottom:1px solid #fff; padding-bottom:5px;">メニュー</h3>
+  <div id="drawerMenu"></div>
+  <button onclick="closeDrawer()" style="margin-top:20px; background:rgba(255,255,255,0.2); color:#fff; border:none; padding:10px; width:100%;">閉じる</button>
+</div>
+
+<button id="back-to-top">↑</button>
 
 <script>
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRLXT6i0DsJxdixNAai_L7EVM6vNZMhqT9Yt3zQLAxyBdBAzkaAJ_fE6zUVtooaNqXKyNbhP2S-B-Cm/pub?gid=886500697&single=true&output=csv';
-let articles = [];
+const CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vRLXT6i0DsJxdixNAai_L7EVM6vNZMhqT9Yt3zQLAxyBdBAzkaAJ_fE6zUVtooaNqXKyNbhP2S-B-Cm/pub?gid=886500697&single=true&output=csv';
+const CATS=['新着','全て','政治','経済','国際','生活','SNS','その他'];
+let arts=[], curCat='新着', curDet=null, searchQ='';
 
-// YouTubeのIDを抽出してサムネイルを取得
-function getYoutubeInfo(url) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    const id = (match && match[2].length == 11) ? match[2] : null;
-    return {
-        id: id,
-        thumb: id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : 'aikon2.png'
-    };
+function parseCSV(t){const rows=[];let row=[],cell='',inQ=false;for(let i=0;i<t.length;i++){const c=t[i];if(inQ){if(c==='"'&&t[i+1]==='"'){cell+='"';i++;}else if(c==='"')inQ=false;else cell+=c;}else{if(c==='"')inQ=true;else if(c===','){row.push(cell);cell='';}else if(c==='\n'||(c==='\r'&&t[i+1]==='\n')){if(c==='\r')i++;row.push(cell);cell='';rows.push(row);row=[];}else cell+=c;}}if(cell||row.length){row.push(cell);rows.push(row);}return rows;}
+
+async function fetchArticles(){
+  try {
+    const res=await fetch(CSV_URL);
+    const text=await res.text();
+    const rows=parseCSV(text);
+    arts = rows.slice(1).filter(r=>r[1]).map((r,i)=>({
+      id:String(i+1),
+      date:r[0]||'', title:r[1]||'', body:r[2]||'',
+      rawUrl:r[5]||'',
+      thumbnail: r[5] ? `https://img.youtube.com/vi/${r[5].match(/(?:v=|shorts\/|youtu\.be\/)([^&?/\s]+)/)?.[1] || 'default'}/maxresdefault.jpg` : '',
+      category:r[6]||'その他'
+    }));
+    render();
+    renderDrawer();
+  } catch(e) { console.error("データ取得エラー:", e); }
 }
 
-// CSVを解析
-async function loadData() {
-    try {
-        const response = await fetch(CSV_URL);
-        const csvText = await response.text();
-        const rows = csvText.split('\n').slice(1);
-        
-        articles = rows.map(row => {
-            const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if(cols.length < 3) return null;
-            const url = cols[5]?.replace(/"/g, '').trim() || '';
-            const yt = getYoutubeInfo(url);
-            return {
-                date: cols[0]?.replace(/"/g, '').trim(),
-                title: cols[1]?.replace(/"/g, '').trim(),
-                body: cols[2]?.replace(/"/g, '').trim(),
-                videoUrl: url,
-                videoId: yt.id,
-                thumb: yt.thumb
-            };
-        }).filter(a => a);
+function render(){
+  const el=document.getElementById('main-area');
+  const about=document.getElementById('aboutSection');
+  const bAd=document.getElementById('bottomAd');
+  
+  if(curDet){
+    const a=arts.find(x=>x.id===curDet);
+    const ytId = a.rawUrl.match(/(?:v=|shorts\/|youtu\.be\/)([^&?/\s]+)/)?.[1];
+    about.style.display = 'none';
+    bAd.style.display = 'none';
+    el.innerHTML=`
+      <div class="detail-wrap">
+        <div class="detail-back" onclick="curDet=null;render()">← 一覧に戻る</div>
+        <div class="yt-embed-wrap">
+          <iframe class="yt-embed" src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe>
+        </div>
+        <h1 style="font-size:22px; line-height:1.5;">${a.title}</h1>
+        <div class="detail-body">${a.body}</div>
+        <div class="detail-back" style="margin-top:2rem;" onclick="curDet=null;render()">← 一覧に戻る</div>
+      </div>`;
+    window.scrollTo(0,0);
+    return;
+  }
 
-        renderArticles();
-        renderSidebar();
-    } catch (e) {
-        console.error("データの読み込みに失敗しました", e);
-    }
-}
-
-// メイン記事一覧を表示
-function renderArticles() {
-    const grid = document.getElementById('article-grid');
-    grid.innerHTML = articles.map((a, i) => `
-        <div class="card" onclick="openDetail(${i})">
-            <img src="${a.thumb}" class="thumb">
-            <div class="card-body">
-                <div style="font-size:11px; color:#999;">${a.date}</div>
-                <div class="card-title">${a.title}</div>
-                <div style="color:var(--camel); font-size:12px; font-weight:bold;">記事を読む →</div>
+  about.style.display = 'block';
+  bAd.style.display = 'block';
+  const fil=arts.filter(a=>searchQ ? a.title.includes(searchQ) : (curCat==='新着' ? isNew(a.date) : (curCat==='全て' ? true : a.category===curCat)));
+  
+  el.innerHTML=`
+    <div class="page">
+      <div class="main">
+        <h2 style="font-size:14px; margin-bottom:1rem; border-bottom:2px solid var(--camel); padding-bottom:5px;">${curCat}</h2>
+        <div class="grid-list">
+          ${fil.map(a=>`
+            <div class="grid-card" onclick="curDet='${a.id}';render()">
+              <div class="thumb-wrap"><img class="thumb-img" src="${a.thumbnail}"></div>
+              <div class="grid-body">
+                <div style="margin-bottom:5px;"><span class="cat-badge">${a.category}</span><span class="art-date">${a.date}</span></div>
+                <div class="grid-title">${a.title}</div>
+              </div>
             </div>
+          `).join('')}
         </div>
-    `).join('');
-}
-
-// サイドバーの最新記事を表示
-function renderSidebar() {
-    const side = document.getElementById('side-list');
-    side.innerHTML = articles.slice(0, 5).map((a, i) => `
-        <div class="side-item" onclick="openDetail(${i})">
-            <img src="${a.thumb}" class="side-thumb">
-            <div class="side-text">${a.title}</div>
-        </div>
-    `).join('');
-}
-
-// 記事詳細を開く
-function openDetail(index) {
-    const a = articles[index];
-    const view = document.getElementById('detail-view');
-    
-    let videoHtml = '';
-    if (a.videoId) {
-        videoHtml = `<div class="video-container"><iframe src="https://www.youtube.com/embed/${a.videoId}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>`;
-    }
-
-    view.innerHTML = `
-        ${videoHtml}
-        <div class="detail-body">
-            <div style="color:#999; font-size:13px; margin-bottom:10px;">${a.date}</div>
-            <h2>${a.title}</h2>
-            <div class="detail-text">${a.body}</div>
-            <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
-            <div class="ad-space">
-                <p style="font-size:10px; color:#ccc; margin-bottom:5px;">スポンサーリンク</p>
-                <a href="https://hb.afl.rakuten.co.jp/hsc/3e527b14.9967732a.3e527b15.00632df3/?link_type=hybrid_ad_res&ut=eyJwYWdlIjoiaHlwZXJsaW5rIiwidHlwZSI6Imh5YnJpZF9hZF9yZXMiLCJjb2wiOjEsImFkIjoianVzdGZpdCIsInB0biI6MX0%3D" target="_blank">
-                    <img src="https://hbb.afl.rakuten.co.jp/hsb/3e527b14.9967732a.3e527b15.00632df3/?me_id=1&me_adv_id=1073105&t=res" width="100%">
-                </a>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-block">
+          <div class="sidebar-title">最新記事</div>
+          ${arts.slice(0,6).map(a=>`
+            <div class="side-item" onclick="curDet='${a.id}';render()">
+              <div class="side-thumb"><img src="${a.thumbnail}"></div>
+              <div class="side-info"><div class="side-title">${a.title}</div></div>
             </div>
+          `).join('')}
         </div>
-    `;
-    document.getElementById('detail-overlay').style.display = 'block';
-    document.body.style.overflow = 'hidden'; // 背景スクロール禁止
+        <div class="sidebar-block">
+          <div class="sidebar-title">おすすめ広告</div>
+          <a href="https://hb.afl.rakuten.co.jp/hsc/51ed2273.495f5a21.51eb1e4c.12e00399/" target="_blank"><img src="https://hbb.afl.rakuten.co.jp/hsb/51ed2273.495f5a21.51eb1e4c.12e00399/?me_id=1&me_adv_id=1564608&t=pict" style="max-width:100%; border-radius:4px;"></a>
+        </div>
+      </div>
+    </div>`;
+  renderNav();
 }
 
-function closeDetail() {
-    document.getElementById('detail-overlay').style.display = 'none';
-    document.getElementById('detail-view').innerHTML = '';
-    document.body.style.overflow = 'auto';
+function renderNav(){
+  document.getElementById('nav').innerHTML=CATS.map(c=>`<button class="ntab ${curCat===c?'active':''}" onclick="curCat='${c}';curDet=null;render()">${c}</button>`).join('');
 }
 
-// トップへ戻るボタン
-window.onscroll = function() {
-    const btn = document.getElementById('topBtn');
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
-};
+function renderDrawer(){
+  document.getElementById('drawerMenu').innerHTML=CATS.map(c=>`<button class="drawer-item" onclick="curCat='${c}';curDet=null;render();closeDrawer()">${c}</button>`).join('');
+}
 
-loadData();
+function isNew(date){ if(!date) return false; const d=new Date(date); const now=new Date(); return(now-d)/(1000*60*60*24)<=7; }
+function onSearch(){searchQ=document.getElementById('sq').value;render();}
+function toggleDrawer(){ document.getElementById('drawer').classList.toggle('open'); document.getElementById('drawerOverlay').classList.toggle('show'); }
+function closeDrawer(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('show'); }
+
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => { btt.style.display = window.pageYOffset > 300 ? 'flex' : 'none'; });
+btt.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+fetchArticles();
 </script>
 </body>
 </html>
